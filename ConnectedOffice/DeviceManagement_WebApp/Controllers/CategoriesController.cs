@@ -16,8 +16,8 @@ namespace DeviceManagement_WebApp.Controllers
         // GET: Categories
         public async Task<IActionResult> Index()
         {
-            CategoriesRepository categoriesRepository = new CategoriesRepository();
-            var results = categoriesRepository.Getall();
+            CategoriesRepository CategoriesRepository = new CategoriesRepository();
+            var results = CategoriesRepository.Getall();
             return View(results);
         }
 

@@ -13,33 +13,40 @@ namespace DeviceManagement_WebApp.Controllers
 {
     public class CategoriesController : Controller
     {
+        private readonly ConnectedOfficeContext _contect;//New class with contect
+        private readonly ICategoriesRepository CategoriesRepository; //New class with Repo
+
+        public CategoriesController(ConnectedOfficeContext contect, ICategoriesRepository categoriesRepository) //New funct to declare and assign context
+        {
+            _contect = contect;
+            CategoriesRepository = categoriesRepository;   
+        }
+
         // GET: Categories
         public async Task<IActionResult> Index()
-        {
-            CategoriesRepository CategoriesRepository = new CategoriesRepository();
-            var results = CategoriesRepository.Getall();
-            return View(results);
+        {            
+            return View(CategoriesRepository.GetAll());
         }
 
         /*
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(Guid? id)
          {
-            CategoriesRepository categoriesRepository = new CategoriesRepository();
             if (id == null)
              {
                  return NotFound();
              }
 
-             var category = await _context.Category
-                 .FirstOrDefaultAsync(m => m.CategoryId == id);
-             if (category == null)
+            var categories = CategoriesRepository.GetById(id);
+
+            if (categories == null)
              {
                  return NotFound();
              }
 
-             return View(category);
+             return View(categories);
          }
+
         
          // GET: Categories/Create
          public IActionResult Create()

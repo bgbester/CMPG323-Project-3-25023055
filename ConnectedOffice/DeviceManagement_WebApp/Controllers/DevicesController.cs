@@ -7,43 +7,32 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DeviceManagement_WebApp.Data;
 using DeviceManagement_WebApp.Models;
+using DeviceManagement_WebApp.Repositories;
 
 namespace DeviceManagement_WebApp.Controllers
 {
     public class DevicesController : Controller
     {
+        private readonly ConnectedOfficeContext _contect; //New class with contect
+        private readonly IDevicesRepository DevicesRepository; //New class with Repo
+
+        public DevicesController(ConnectedOfficeContext contect, IDevicesRepository DevicesRepository)//New funct to declare and assign context
+        {
+            _contect = contect;
+            DevicesRepository = DevicesRepository;
+        }
+        
+        // GET: Categories
+        public async Task<IActionResult> Index()
+        {
+            return View(DevicesRepository.GetAll());
+        }
+        /*
         private readonly ConnectedOfficeContext _context;
 
         public DevicesController(ConnectedOfficeContext context)
         {
             _context = context;
-        }
-
-        // GET: Devices
-        public async Task<IActionResult> Index()
-        {
-            var connectedOfficeContext = _context.Device.Include(d => d.Category).Include(d => d.Zone);
-            return View(await connectedOfficeContext.ToListAsync());
-        }
-
-        // GET: Devices/Details/5
-        public async Task<IActionResult> Details(Guid? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var device = await _context.Device
-                .Include(d => d.Category)
-                .Include(d => d.Zone)
-                .FirstOrDefaultAsync(m => m.DeviceId == id);
-            if (device == null)
-            {
-                return NotFound();
-            }
-
-            return View(device);
         }
 
         // GET: Devices/Create
@@ -152,6 +141,6 @@ namespace DeviceManagement_WebApp.Controllers
         private bool DeviceExists(Guid id)
         {
             return _context.Device.Any(e => e.DeviceId == id);
-        }
+        }*/
     }
 }

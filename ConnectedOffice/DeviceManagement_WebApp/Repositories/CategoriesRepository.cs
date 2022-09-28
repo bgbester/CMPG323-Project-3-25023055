@@ -1,5 +1,6 @@
 ﻿using DeviceManagement_WebApp.Data;
 using DeviceManagement_WebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,21 +10,19 @@ using System.Threading.Tasks;
 
 namespace DeviceManagement_WebApp.Repositories
 {
-    public class CategoriesRepository
+
+    //This is my devices repo
+    public class CategoriesRepository : GenericRepository<Category>, ICategoriesRepository
     {
-        private readonly ConnectedOfficeContext _context = new ConnectedOfficeContext();
-
-        //GET: Categories
-        public  List<Category> Getall()
+        public CategoriesRepository(ConnectedOfficeContext context) : base(context)
         {
-            return _context.Category.ToList();
         }
 
-        /*// GET: Categories/Details/5
-        public List<Category> Getall()
+        public Category GetMostRecentCategory()
         {
-            return _context.Category.ToList();
+            return _context.Category.OrderByDescending(category => category.DateCreated).FirstOrDefault();
         }
-        */
     }
+
+
 }

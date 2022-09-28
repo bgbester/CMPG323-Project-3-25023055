@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace DeviceManagement_WebApp.Repositories
 {
+    //Our Interface for generic repo
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         protected readonly ConnectedOfficeContext _context;

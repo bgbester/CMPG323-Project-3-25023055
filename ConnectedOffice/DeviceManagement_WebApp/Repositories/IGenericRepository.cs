@@ -4,6 +4,7 @@ using System;
 
 namespace DeviceManagement_WebApp.Repositories
 {
+    //This is a generic Repo to get code less 
     public interface IGenericRepository<T> where T : class
     {
         T GetById(int id);

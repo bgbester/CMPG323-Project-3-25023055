@@ -1,10 +1,10 @@
 # CMPG-323-Project-3-25023055
-This project was forked from https://github.com/JacquiM/CMPG-323-IOT-Device-Management .Rhis project was forked and we implemented interfaces and Generic Interfaces and Functions to make sure we follow code practices.
+This project was forked from https://github.com/JacquiM/CMPG-323-IOT-Device-Management .Rhis project was forked and we implemented interfaces and Generic Interfaces and Functions to make sure we follow code practices. you can cretae and account that will go to your database and thus login without any issues
 
 # Azure Link
 https://cmpg323project325023055.azurewebsites.net/
 
-#Connection Settings
+# Connection Settings
 Remember to add the database connection and add app settings as it is ignored it the repo
 
 # Branching Strategy with diagram
